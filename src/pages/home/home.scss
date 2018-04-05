@@ -1,0 +1,36 @@
+page-home {
+  .masters {
+    background-color: #F9F9F9;
+  }
+
+  [text-color="qiita-color"] {
+    color: #5FBF3C;
+  }
+
+  .card-item-page {
+    .item-date {
+      font-size: 0.8em;
+      position: relative;
+      text-align: left;
+    }
+
+    .item-title {
+      font-size: 1.3em;
+      width: 100%;
+      font-weight: 120%;
+    }
+
+    .item-tags {
+      color: #7C7C7C;
+    }
+
+    .card-row {
+      font-size: 1.0em;
+      width: 100%;
+      font-weight: 100%;
+      color: #5FBF3C;
+      text-align: center;
+    }
+  }
+
+}

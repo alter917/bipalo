@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span text-color="qiita-color">Qiita</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="masters">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingText="ひっぱって更新"
+            refreshingText="更新中...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="row" *ngIf="qiitaItems?.length === 0">
+    <ion-card>
+      <ion-card-header text-center>
+        <ion-icon name="sad"></ion-icon>
+      </ion-card-header>
+      <ion-card-content text-center>
+        一致する記事は、見つかりませんでした。
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-card class="card-item-page" *ngFor="let qiitaItem of qiitaItems" on-tap="onTap(qiitaItem.url)">
+    <ion-item>
+      <p class="item-date"><ion-icon name="calendar"></ion-icon> {{ qiitaItem.created_at }} </p>
+      <ion-avatar item-end>
+        <img src="{{ qiitaItem.user.profile_image_url }}">
+      </ion-avatar>
+    </ion-item>
+
+    <ion-card-content>
+      <h2 class="item-title">{{ qiitaItem.title }}</h2>
+      <p class="item-tags">{{ getTagList(qiitaItem.tags) }}</p>
+    </ion-card-content>
+
+    <ion-row class="card-row">
+      <ion-col>
+        <div><ion-icon name="heart"></ion-icon> {{ qiitaItem.likes_count }}</div>
+      </ion-col>
+      <ion-col>
+        <div><ion-icon name="chatboxes"></ion-icon> {{ qiitaItem.comments_count }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <div class="row" *ngIf="hasMoreData === false">
+    <ion-card>
+      <ion-card-content text-center>
+        これ以上、記事はありません。
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="row" *ngIf="isError === true">
+    <ion-card>
+      <ion-card-header text-center>
+        <ion-icon name="warning" color="warning"></ion-icon>
+      </ion-card-header>
+      <ion-card-content text-center>
+        {{ errerMessage }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!--
+  $eventはangularのイベントオブジェクトのこと
+  (click)="onclick($event)みたいな書き方でイベントバインディングしてEventオブジェクト渡す"
+  (click)の部分が取得したいイベント、"onclick($event)"の部分が設定するイベントハンドラ
+  waitForはionic公式サイトに非同期で操作シたい場合は使えと書いていた。promiseオブジェクト使ってるから非同期になるのか？
+  -->
+  <ion-infinite-scroll *ngIf="hasMoreData" (ionInfinite)="$event.waitFor(doInfinite())" threshold="15%">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data...">
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
