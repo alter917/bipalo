@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { QiitaServiceProvider } from '../../providers/qiita-service/qiita-service';
 import { QiitaItem } from '../../providers/qiita-service/QiitaItem';
 
+import { ParkingListPage } from '../../pages/parking-list/parking-list';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -93,6 +95,10 @@ export class HomePage {
       'closebuttoncaption=x'
     ];
     window.open(externalPage, '_blank', options.join());
+  }
+
+  goParkingListPage() {
+    this.navCtrl.push(ParkingListPage);
   }
 
 }

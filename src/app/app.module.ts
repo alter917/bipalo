@@ -5,19 +5,22 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { ParkingListPage } from '../pages/parking-list/parking-list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { QiitaServiceProvider } from '../providers/qiita-service/qiita-service';
 import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ParikingServiceProvider } from '../providers/pariking-service/pariking-service';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    ParkingListPage
   ],
   imports: [
     BrowserModule,
@@ -28,14 +31,16 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    ParkingListPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QiitaServiceProvider,
-    InAppBrowser
+    InAppBrowser,
+    ParikingServiceProvider
   ]
 })
 export class AppModule {}
