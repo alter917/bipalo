@@ -23,13 +23,11 @@ export class ParikingServiceProvider {
 
   getParkingList(): Observable<ParkingItem[]> {
     var url: string = '';
+    let perPage = 10;
+
     url = 'http://bipalo/bipalo_api.php';
 
     return this.http.get(url)
-      // .map((res) => {
-      //   console.log("get shita data: " + (res.json().data as ParkingItem[]));
-      //   return <Array<ParkingItem>>res.json();
-      // })
       .map((res) => {
         return res.json() as ParkingItem[];
       })
