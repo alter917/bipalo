@@ -26,7 +26,13 @@ export class ParikingServiceProvider {
     url = 'http://bipalo/bipalo_api.php';
 
     return this.http.get(url)
-      .map(res => <Array<ParkingItem>>res.json())
+      // .map((res) => {
+      //   console.log("get shita data: " + (res.json().data as ParkingItem[]));
+      //   return <Array<ParkingItem>>res.json();
+      // })
+      .map((res) => {
+        return res.json() as ParkingItem[];
+      })
       .do(data => console.log('server data:', data))
       .catch(this._serverError);
   }

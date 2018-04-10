@@ -29,8 +29,8 @@ export class ParkingListPage {
     this.parkingServiceProvider.getParkingList()
       .subscribe(
         items => {
+          console.log("item data:" + items);
           this.parkingItems = items;
-          console.log(items);
         },
         error => {
           console.log(error);
@@ -39,6 +39,9 @@ export class ParkingListPage {
         () => {
         }
       );
+
+
+      console.log("hairetu is:" + this.parkingItems);
   }
 
   ionViewDidLoad() {
