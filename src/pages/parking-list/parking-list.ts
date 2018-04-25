@@ -21,12 +21,15 @@ export class ParkingListPage {
   private isError: boolean;
   private errorMessage: string;
   private hasMoreData: boolean;
+  private queryOption;
+  string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private parkingServiceProvider: ParikingServiceProvider) {
     this.currentPage = 1;
     this.hasMoreData = true;
 
-    this.parkingServiceProvider.getParkingList()
+    this.parkingServiceProvider.getParkingList(this.currentPage, this.queryOption)
       .subscribe(
         items => {
           console.log("item data:" + items);
@@ -41,11 +44,56 @@ export class ParkingListPage {
       );
 
 
-      console.log("hairetu is:" + this.parkingItems);
+    console.log("hairetu is:" + this.parkingItems);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParkingListPage');
+  }
+
+  doInfinite(): Promise<any> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        this.currentPage += 1;
+
+        this.parkingServiceProvider.getParkingList(this.currentPage, this.queryOption)
+          .subscribe(
+            items => {
+              this.parkingItems = this.parkingItems.concat(items);
+              if (this.currentPage >= 2 && items.length == 0) {
+                this.hasMoreData = false;
+              }
+              console.log(items);
+              this.isError = false;
+            },
+            err => {
+              console.log(err);
+              this.errorMessage = err;
+              this.isError = true;
+            },
+            () => {
+            });
+
+        resolve();
+      }, 500);
+    });
+  }
+
+  doRefresh(refresher) {
+    this.currentPage = 1;
+
+    setTimeout(() => {
+      this.parkingServiceProvider.getParkingList(this.currentPage, this.queryOption)
+        .subscribe(items => {
+          this.parkingItems = items;
+          console.log(items);
+        },
+          err => {
+            console.log(err);
+          },
+          () => {});
+      refresher.complete();
+    }, 500);
   }
 
 }

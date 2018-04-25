@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ParkingListPage } from '../pages/parking-list/parking-list';
+import {MapPage} from '../pages/map/map';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,13 +15,16 @@ import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ParikingServiceProvider } from '../providers/pariking-service/pariking-service';
 
+import { GoogleMaps } from "@ionic-native/google-maps";
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    ParkingListPage
+    ParkingListPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { ParikingServiceProvider } from '../providers/pariking-service/pariking-
     MyApp,
     HomePage,
     ListPage,
-    ParkingListPage
+    ParkingListPage,
+    MapPage
   ],
   providers: [
     StatusBar,
@@ -40,7 +45,8 @@ import { ParikingServiceProvider } from '../providers/pariking-service/pariking-
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QiitaServiceProvider,
     InAppBrowser,
-    ParikingServiceProvider
+    ParikingServiceProvider,
+    GoogleMaps
   ]
 })
 export class AppModule {}

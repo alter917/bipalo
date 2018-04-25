@@ -4,6 +4,7 @@ import { QiitaServiceProvider } from '../../providers/qiita-service/qiita-servic
 import { QiitaItem } from '../../providers/qiita-service/QiitaItem';
 
 import { ParkingListPage } from '../../pages/parking-list/parking-list';
+import { MapPage } from '../../pages/map/map';
 
 @Component({
   selector: 'page-home',
@@ -100,5 +101,10 @@ export class HomePage {
   goParkingListPage() {
     this.navCtrl.push(ParkingListPage);
   }
+
+  goMapPage() {
+    this.navCtrl.push(MapPage);
+  }
+
 
 }

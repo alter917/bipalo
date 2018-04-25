@@ -21,11 +21,14 @@ export class ParikingServiceProvider {
   constructor(public http: Http) {
   }
 
-  getParkingList(): Observable<ParkingItem[]> {
+  getParkingList(page, queryOption): Observable<ParkingItem[]> {
     var url: string = '';
     let perPage = 10;
 
-    url = 'http://bipalo/bipalo_api.php';
+    url = 'http://bipalo/bipalo_api.php?page=' + page + "&per_page=" + perPage;
+    if (queryOption != null && queryOption != '') {
+      url += ("&query=" + queryOption);
+    }
 
     return this.http.get(url)
       .map((res) => {

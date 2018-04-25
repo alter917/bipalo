@@ -21,7 +21,7 @@
     "@angular/http": "5.2.9",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
-    "@ionic-native/core": "4.6.0",
+    "@ionic-native/core": "^4.7.0",
     "@ionic-native/google-maps": "^4.6.3",
     "@ionic-native/in-app-browser": "^4.6.0",
     "@ionic-native/splash-screen": "4.6.0",
@@ -55,7 +55,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyAmCeLI2zRjgzLuIgZRDYTQlB7I4p1smbo",
+        "API_KEY_FOR_ANDROID": "AIzaSyBVSdYClmttx68PYobl4186ryASQ1k_fuo",
+        "API_KEY_FOR_IOS": "AIzaSyBVSdYClmttx68PYobl4186ryASQ1k_fuo",
         "PLAY_SERVICES_VERSION": "12.0.0",
         "ANDROID_SUPPORT_V4_VERSION": "24.1.0"
       }
